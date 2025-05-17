@@ -8,11 +8,7 @@ const useCreateNote = () => {
   const createNote = async ({ title, content }) => {
     setIsLoading(true);
     try {
-      const res = await axios.post("/api/notes/", { title, content });
-      if (res.statusText !== "OK") {
-        throw new Error(res.data.error || "Something went wrong");
-      }
-
+      await axios.post("/api/notes/", { title, content });
       toast.success("Note created successfully");
     } catch (error) {
       if (error.response.status === 429) {

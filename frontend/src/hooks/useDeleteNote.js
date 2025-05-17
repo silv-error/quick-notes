@@ -9,10 +9,7 @@ const useDeleteNote = () => {
 
   const deleteNote = async (id) => {
     try {
-      const res = await axios.delete(`/api/notes/${id}`);
-      if (res.statusText !== "OK") {
-        throw new Error(res.data.error || "Something went wrong");
-      }
+      await axios.delete(`/api/notes/${id}`);
       toast.success("Note deleted successfully");
       navigate("/");
     } catch (error) {
